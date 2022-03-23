@@ -16,10 +16,10 @@ def input_data():
         cases[i] = line[1:]
     return cases
 
-def get_gcd(case):
+def get_gcd(comb): # (10, 20)
     max_gcd = 1
-    for i in reversed(range(1, max(case) + 1)):
-        if(case[0] % i == 0) and (case[1] % i == 0):
+    for i in reversed(range(1, max(comb) + 1)):
+        if(comb[0] % i == 0) and (comb[1] % i == 0):
             max_gcd = i
             break
     return max_gcd
@@ -29,8 +29,8 @@ def solve():
     for case in cases:
         result = 0
         combs = list(itertools.combinations(case, 2))
-        for j in combs:
-            result += get_gcd(j)
+        for comb in combs:
+            result += get_gcd(comb)
         print(result)
 
 solve()

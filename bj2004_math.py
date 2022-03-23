@@ -12,29 +12,28 @@ def input_data():
     n, m = map(int, sys.stdin.readline().split(" "))
     return n, m
 
-def count_multiple(num, multiple):
+def count_standard(factorial_num, standard):
     result = 0
-    mult = multiple
-    while True:
-        if num // multiple == 0:
-            break
-        else:
-            result += num // multiple
-            multiple *= mult
+    multiple = standard
+    while factorial_num // multiple:
+        result += factorial_num // multiple
+        multiple *= standard
     return result
 
 def solve():
     n, m = input_data()
-    upper_five = count_multiple(n, 5)
-    upper_two = count_multiple(n, 2)
-    temp_five = count_multiple((n - m), 5)
-    temp_two = count_multiple((n - m), 2)
-    lower_five = count_multiple(m, 5)
-    lower_two = count_multiple(m, 2)
-
+    
+    upper_five = count_standard(n, 5)
+    temp_five = count_standard((n - m), 5)
+    lower_five = count_standard(m, 5)
     five = upper_five - lower_five - temp_five
+
+    upper_two = count_standard(n, 2)
+    temp_two = count_standard((n - m), 2)
+    lower_two = count_standard(m, 2)
     two = upper_two - lower_two - temp_two
+
     result = min(five, two)
     # print(upper_five, upper_two, lower_five, lower_two)
-    print(max(result, 0))
+    print(result)
 solve()
